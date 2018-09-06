@@ -1,0 +1,23 @@
+.grid-container,
+ .grid-main {
+    display: grid;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.grid-container,
+ .grid-main {
+    grid-template-columns: 100%;
+}
+
+.grid-header {
+    font: bold 20px Roboto,"Helvetica Neue",sans-serif;
+    grid-column: 1;
+    text-align: center;
+}
+
+app-letters-track,
+ app-inputs {
+    grid-column: 1;
+}

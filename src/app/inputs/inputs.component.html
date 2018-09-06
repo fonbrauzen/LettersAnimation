@@ -1,0 +1,23 @@
+<form [formGroup]="letterForm" class="inputs-form">
+  <div class="grid-row">
+    <mat-form-field class="grid-field">
+        <label for="letter" class="input-text">English alphabet Letter</label>
+        <input id="letter" matInput class="letter-input" formControlName="letter" required>
+        <mat-error *ngIf="!letterForm.valid">Please enter 1 English alphabet letter</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="grid-row2">
+    <div class="mat-form-field-infix">
+        <label for="speed" class="input-text" >Speed</label>
+    </div>
+      <mat-slider id="speed" min="0" max="10" value="0" tickInterval="1" thumbLabel aria-label="letter speed" 
+      class="letter-speed" formControlName="speed">
+      </mat-slider>
+  </div>
+  <div class="input-buttons">
+    <button mat-raised-button color="primary" class="form-button" 
+    type="submit" [disabled]="!letterForm.valid" (click)="onSubmit()">GO!</button>
+    <button mat-raised-button color="warn" class="form-button" 
+    [disabled]="!letterForm.valid" (click)="onReduce()">STOP</button>
+  </div>
+</form>
