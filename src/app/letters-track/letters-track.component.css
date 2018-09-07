@@ -1,0 +1,9 @@
+.letters-track {
+    border: 1px #000 solid;
+    height: 20px;
+    padding: 5px;
+}
+
+.letter-block {
+    display: inline-block;
+}

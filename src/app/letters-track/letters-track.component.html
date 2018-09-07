@@ -1,3 +1,8 @@
-<p>
-  letters-track works!
+<p class="input-text">
+  Track
 </p>
+<div class="letters-track">
+  <span *ngFor="let letter of letters" [attr.id]="letter.letter" class="letter-block" >
+    {{ letter.letter }}
+  </span>
+</div>
