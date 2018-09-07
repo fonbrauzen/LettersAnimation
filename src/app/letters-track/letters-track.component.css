@@ -5,5 +5,19 @@
 }
 
 .letter-block {
+    animation-name: example;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     display: inline-block;
+}
+
+.input-text {
+    font: 400 14px Roboto,"Helvetica Neue",sans-serif;
+}
+
+@keyframes example {
+    0% {transform: translateX(0)}
+    50% {transform: translateX(346px)}
+    100% {transform: translateX(0)}
 }

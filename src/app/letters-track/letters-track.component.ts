@@ -8,7 +8,10 @@ import { Letter } from '../letter';
 })
 export class LettersTrackComponent implements OnInit {
 
-  @Input('letters') letters: Letter[];
+  letters: Letter[];
+  @Input('letters') set Letters(letters: Letter[]) {
+    this.letters = letters;
+  }
 
   constructor() { }
 
@@ -20,26 +23,27 @@ export class LettersTrackComponent implements OnInit {
       const element = this.letters[index];
       this.Animation(element.speed, index, this.letters.length, element.letter);
     }
+    console.log('animation call');
   }
   Animation(speed: number, lettersIndex: number, lettersLength: number, letter: string) {
     // document.getElementById(letter).animate([
     //   // keyframes
-    //   { transform: 'translateX(0px)' }, 
+    //   { transform: 'translateX(0px)' },
     //   { transform: 'translateX(+343px)' }
     // ], {
     //   // timing options
     //   duration: 1000,
     //   iterations: Infinity
     // });
-    // this.Animate({
-    //   duration: 1000,
-    //   timing(timeFraction) {
-    //     return timeFraction;
-    //   },
-    //   draw(progress) {
-    //     document.getElementById(letter).animate = progress * 100 + '%';
-    //   }
-    // });
+    //   this.Animate({
+    //     duration: 1000,
+    //     timing(timeFraction) {
+    //       return timeFraction;
+    //     },
+    //     draw(progress) {
+    //       document.getElementById(letter). = progress * 100 + '%';
+    //     }
+    //   });
   }
   Animate({ timing, draw, duration }) {
 
