@@ -1,8 +1,5 @@
 <p class="input-text">
   Track
 </p>
-<div class="letters-track">
-  <span *ngFor="let letter of letters" [attr.id]="letter.letter" class="letter-block input-text" >
-    {{ letter.letter }}
-  </span>
-</div>
+<canvas id={{trackId}} class="letters-track" width="360" height="20">
+</canvas>

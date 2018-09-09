@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Letter } from '../letter';
 import { LetterValidatorDirective } from '../letter-validator.directive';
+import { LettersEventsService } from '../letters-events.service';
 
 @Component({
   selector: 'app-inputs',
@@ -11,11 +12,11 @@ import { LetterValidatorDirective } from '../letter-validator.directive';
 export class InputsComponent implements OnInit {
   letterForm: FormGroup;
   letter: Letter;
-  @Output() added: EventEmitter<Letter> = new EventEmitter();
-  @Output() removed: EventEmitter<Letter> = new EventEmitter();
 
-  constructor() {
-    this.letter = new Letter();
+  constructor(
+    private letterEvents: LettersEventsService
+  ) {
+    this.letter = new Letter('', 0);
   }
 
   ngOnInit() {
@@ -26,19 +27,9 @@ export class InputsComponent implements OnInit {
     });
   }
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    this.added.emit(this.letterForm.value);
+    this.letterEvents.LetterAdded.next(this.letterForm.value);
   }
-onReduce() {
-  this.removed.emit(this.letterForm.value);
-}
-  // GenInputsArray(charA, charZ) {
-  //   const a = [],
-  //     j = charZ.charCodeAt(0);
-  //   for (let i = charA.charCodeAt(0); i <= j; ++i) {
-  //     a.push(String.fromCharCode(i));
-  //     a.push(String.fromCharCode(i).toUpperCase());
-  //   }
-  //   return a;
-  // }
+  onReduce() {
+    this.letterEvents.LetterRemoved.next(this.letterForm.value);
+  }
 }
