@@ -54,16 +54,14 @@ export class LettersTrackComponent implements OnInit {
   }
   onLetterRemove(event: Letter) {
     const letters = this.letters.slice();
-    of<Letter>(...letters).pipe(findIndex((m: Letter) => m.letter === event.letter)).subscribe(r => {
+    const r = letters.findIndex((m: Letter) => m.letter === event.letter);
       if (r > -1) {
         letters.splice(r, 1);
-      }
-    }, e => console.error(e), () => {
-      this.letters = letters;
+        this.letters = letters;
       // console.log('spliced letters');
       // console.log(this.letters);
       this.canvasAnimation.RemoveLetter(event);
-    });
+      }
   }
   onSpeedChanged(letter: Letter) {
     this.canvasAnimation.ChangeSpeed(letter);
