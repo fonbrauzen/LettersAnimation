@@ -2,6 +2,7 @@ import { Letter } from './letter';
 import { LetterCanvas } from './letter-canvas';
 import { of } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { NgZone } from '@angular/core';
 
 
 export class CanvasAnimation {
@@ -11,7 +12,7 @@ export class CanvasAnimation {
     width: number;
     containerInitiated = false;
 
-    constructor() {
+    constructor(public ngZone: NgZone) {
         this.trackLetters = [];
     }
     public DrawAnimation(canvasContainerId: string, letter: Letter): number {
@@ -57,7 +58,9 @@ export class CanvasAnimation {
                 this.speedSwitcher(letter, isFirstLetter, isLastLetter, i);
             }
         }
+        this.ngZone.runOutsideAngular(() => {
         window.requestAnimationFrame(() => this.draw(letterIndex));
+        });
     }
     private speedSwitcher(letter: LetterCanvas, isFirstLetter: boolean, isLastLetter: boolean, index: number) {
         let previousLetterX = 0;

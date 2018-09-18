@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { of } from 'rxjs';
 import { distinct, findIndex } from 'rxjs/operators';
 
@@ -16,10 +16,11 @@ export class LettersTrackComponent implements OnInit {
   trackId = 'letters-track-canvas';
   canvasAnimation: CanvasAnimation;
   constructor(
-    private letterEvents: LettersEventsService
+    private letterEvents: LettersEventsService,
+    public ngZone: NgZone
   ) {
     this.letters = [];
-    this.canvasAnimation = new CanvasAnimation();
+    this.canvasAnimation = new CanvasAnimation(ngZone);
   }
 
   ngOnInit() {
