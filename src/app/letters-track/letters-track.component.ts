@@ -1,6 +1,6 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { distinct, findIndex } from 'rxjs/operators';
+import { distinct } from 'rxjs/operators';
 
 import { Letter } from '../letter';
 import { LettersEventsService } from '../letters-events.service';
@@ -16,11 +16,10 @@ export class LettersTrackComponent implements OnInit {
   trackId = 'letters-track-canvas';
   canvasAnimation: CanvasAnimation;
   constructor(
-    private letterEvents: LettersEventsService,
-    public ngZone: NgZone
+    private letterEvents: LettersEventsService
   ) {
     this.letters = [];
-    this.canvasAnimation = new CanvasAnimation(ngZone);
+    this.canvasAnimation = new CanvasAnimation();
   }
 
   ngOnInit() {
